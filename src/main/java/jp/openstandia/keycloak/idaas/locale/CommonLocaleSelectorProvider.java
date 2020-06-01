@@ -2,6 +2,7 @@ package jp.openstandia.keycloak.idaas.locale;
 
 import org.keycloak.locale.DefaultLocaleSelectorProvider;
 import org.keycloak.models.KeycloakSession;
+import org.keycloak.models.RealmModel;
 import org.keycloak.models.UserModel;
 
 import javax.ws.rs.core.HttpHeaders;
@@ -21,7 +22,7 @@ public class CommonLocaleSelectorProvider extends DefaultLocaleSelectorProvider 
     }
 
     @Override
-    public Locale resolveLocale(UserModel user) {
+    public Locale resolveLocale(RealmModel realm, UserModel user) {
         if (user == null) {
             HttpHeaders requestHeaders = this.session.getContext().getRequestHeaders();
             List<Locale> acceptableLanguages = requestHeaders.getAcceptableLanguages();
@@ -31,6 +32,6 @@ public class CommonLocaleSelectorProvider extends DefaultLocaleSelectorProvider 
                 }
             }
         }
-        return super.resolveLocale(user);
+        return super.resolveLocale(realm, user);
     }
 }
