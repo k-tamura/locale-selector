@@ -27,9 +27,7 @@ public class CommonLocaleSelectorProvider extends DefaultLocaleSelectorProvider 
             HttpHeaders requestHeaders = this.session.getContext().getRequestHeaders();
             List<Locale> acceptableLanguages = requestHeaders.getAcceptableLanguages();
             for (Locale acceptableLanguage : acceptableLanguages) {
-                if (acceptableLanguage != null) {
-                    return acceptableLanguage;
-                }
+                return acceptableLanguage;
             }
         }
         return super.resolveLocale(realm, user);
